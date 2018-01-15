@@ -6,11 +6,13 @@ import {AppComponent} from './app.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {MatButtonModule} from '@angular/material';
+import {MatButtonModule, MatToolbarModule} from '@angular/material';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +21,8 @@ import {MatButtonModule} from '@angular/material';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
