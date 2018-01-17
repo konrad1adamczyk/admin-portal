@@ -9,7 +9,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   sendCredential(username: string, password: string) {
-    let url = "http://localhost:8080/token";
+    let url = "http://localhost:8181/token";
     let encodedCredentials = btoa(username+":"+password);
     let basicHeader = "Basic "+encodedCredentials;
     let headers = new HttpHeaders ({
