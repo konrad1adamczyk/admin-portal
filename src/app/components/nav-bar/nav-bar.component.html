@@ -3,5 +3,5 @@
   <span class="example-spacer"></span>
   <span [hidden]="!loggedIn"><a mat-button class="nav-button">View a Book List</a></span>
   <span [hidden]="!loggedIn"><a mat-button class="nav-button">Add a Book</a></span>
-  <span [hidden]="!loggedIn"><a mat-button class="nav-button">Logout</a></span>
+  <span [hidden]="!loggedIn"><a mat-button class="nav-button" (click)="logout()">Logout</a></span>
 </mat-toolbar>
