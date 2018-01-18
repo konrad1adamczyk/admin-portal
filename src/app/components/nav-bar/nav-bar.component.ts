@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../services/login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'rb-nav-bar',
@@ -9,19 +10,22 @@ import {LoginService} from '../../services/login.service';
 export class NavBarComponent implements OnInit {
   private loggedIn = false;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router) {
 
   }
 
   logout() {
     this.loginService.logout().subscribe(
       res => {
+
         location.reload();
       },
       error => {
         console.log(error);
       }
     );
+    this.router.navigate(['/']);
+
   }
 
   ngOnInit() {
@@ -34,6 +38,4 @@ export class NavBarComponent implements OnInit {
       }
     );
   }
-
-
 }

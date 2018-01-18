@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatSelectModule, MatSlideToggleModule, MatToolbarModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {AppComponent} from './app.component';
 
@@ -15,12 +15,14 @@ import {LoginComponent} from './components/login/login.component';
 import {LoginService} from './services/login.service';
 import {routing} from './app.routing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AddNewBookComponent } from './components/add-new-book/add-new-book.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    AddNewBookComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule, MatToolbarModule, MatChipsModule, MatGridListModule, MatInputModule, MatFormFieldModule,
+    MatSelectModule, MatSlideToggleModule,
     BrowserAnimationsModule,
     routing
   ],
