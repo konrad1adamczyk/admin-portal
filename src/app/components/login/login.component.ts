@@ -17,11 +17,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.loginService.sendCredential(this.credential.username, this.credential.password).subscribe(
+
       res => {
-        console.log(res);
-        localStorage.setItem('xAuthToken', res.token);
+        localStorage.setItem('xAuthToken', res['token']);
         this.loggedIn = true;
-        location.reload();
       },
       error => {
         console.log(error);

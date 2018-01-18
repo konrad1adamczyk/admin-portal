@@ -17,6 +17,7 @@ import {routing} from './app.routing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AddNewBookComponent } from './components/add-new-book/add-new-book.component';
 import {AddBookService} from './services/add-book.service';
+import {UploadImageService} from './services/upload-image.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {AddBookService} from './services/add-book.service';
   ],
   providers: [
     LoginService,
-    AddBookService
+    AddBookService,
+    UploadImageService
   ],
   bootstrap: [AppComponent]
 })
