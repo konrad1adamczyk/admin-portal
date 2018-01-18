@@ -16,6 +16,7 @@ import {LoginService} from './services/login.service';
 import {routing} from './app.routing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AddNewBookComponent } from './components/add-new-book/add-new-book.component';
+import {AddBookService} from './services/add-book.service';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,6 @@ import { AddNewBookComponent } from './components/add-new-book/add-new-book.comp
   ],
   imports: [
     BrowserModule,
-
-
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -37,7 +36,8 @@ import { AddNewBookComponent } from './components/add-new-book/add-new-book.comp
     routing
   ],
   providers: [
-    LoginService
+    LoginService,
+    AddBookService
   ],
   bootstrap: [AppComponent]
 })
