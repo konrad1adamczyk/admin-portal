@@ -13,6 +13,11 @@ export class LoginComponent implements OnInit {
   private loggedIn = false;
 
   constructor(private loginService: LoginService) {
+    loginService.loggedIn$.subscribe(
+      loggedIn => {
+        this.loggedIn = loggedIn;
+      }
+    );
   }
 
   onSubmit() {
@@ -20,7 +25,8 @@ export class LoginComponent implements OnInit {
 
       res => {
         localStorage.setItem('xAuthToken', res['token']);
-        this.loggedIn = true;
+        // this.loggedIn = true;
+        this.loginService.publishLoggedIn(true);
       },
       error => {
         console.log(error);
@@ -30,11 +36,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.checkSession().subscribe(
-      res => {
-        this.loggedIn = true;
+      data => {
+        this.loginService.publishLoggedIn(true);
       },
       error => {
-        this.loggedIn = false;
+        this.loginService.publishLoggedIn(false);
       }
     );
   }

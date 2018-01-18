@@ -7,35 +7,27 @@ import {Router} from '@angular/router';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent {
   private loggedIn = false;
 
   constructor(private loginService: LoginService, private router: Router) {
-
+    loginService.loggedIn$.subscribe(
+      loggedIn => {
+        this.loggedIn = loggedIn;
+      }
+    );
   }
 
   logout() {
     this.loginService.logout().subscribe(
       res => {
 
-        location.reload();
+        this.loginService.publishLoggedIn(false);
       },
       error => {
         console.log(error);
       }
     );
     this.router.navigate(['/']);
-
-  }
-
-  ngOnInit() {
-    this.loginService.checkSession().subscribe(
-      data => {
-        this.loggedIn = true;
-      },
-      error => {
-        this.loggedIn = false;
-      }
-    );
   }
 }
