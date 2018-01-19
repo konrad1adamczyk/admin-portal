@@ -18,10 +18,15 @@ export class BookListComponent implements OnInit {
   constructor(private getBookListService: GetBookListService, private router: Router) {
   }
 
+  onSelect(book: Book) {
+    this.selectedBook = book;
+    this.router.navigate(['/viewBook', this.selectedBook.id]);
+  }
+
   ngOnInit() {
     this.getBookListService.getBookList().subscribe(
       res => {
-        console.log(JSON.parse(res));
+        // console.log(JSON.parse(res));
         this.bookList = JSON.parse(res);
       },
       error => {

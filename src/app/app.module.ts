@@ -4,7 +4,10 @@ import {NgModule} from '@angular/core';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule, MatSelectModule, MatSlideToggleModule, MatToolbarModule} from '@angular/material';
+import {
+  MatButtonModule, MatListModule, MatSelectModule, MatSlideToggleModule,
+  MatToolbarModule
+} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {AppComponent} from './app.component';
 
@@ -20,6 +23,8 @@ import {AddBookService} from './services/add-book.service';
 import {UploadImageService} from './services/upload-image.service';
 import {BookListComponent} from './components/book-list/book-list.component';
 import {GetBookListService} from './services/get-book-list.service';
+import {ViewBookComponent} from './components/view-book/view-book.component';
+import {GetBookService} from './services/get-book.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,8 @@ import {GetBookListService} from './services/get-book-list.service';
     NavBarComponent,
     LoginComponent,
     AddNewBookComponent,
-    BookListComponent
+    BookListComponent,
+    ViewBookComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,7 @@ import {GetBookListService} from './services/get-book-list.service';
     ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule, MatToolbarModule, MatChipsModule, MatGridListModule, MatInputModule, MatFormFieldModule,
-    MatSelectModule, MatSlideToggleModule,
+    MatSelectModule, MatSlideToggleModule, MatListModule,
     BrowserAnimationsModule,
     routing
   ],
@@ -43,7 +49,8 @@ import {GetBookListService} from './services/get-book-list.service';
     LoginService,
     AddBookService,
     UploadImageService,
-    GetBookListService
+    GetBookListService,
+    GetBookService
   ],
   bootstrap: [AppComponent]
 })
