@@ -48,6 +48,45 @@ export class BookListComponent implements OnInit {
     );
   }
 
+  updateRemoveBookList(checked: boolean, book: Book) {
+    if (checked) {
+      this.removeBookList.push(book);
+    } else {
+      this.removeBookList.splice(this.removeBookList.indexOf(book), 1);
+    }
+  }
+
+  updateSelected(checked: boolean) {
+    if(checked) {
+      this.allChecked = true;
+      this.removeBookList = this.bookList.slice();
+    } else {
+      this.allChecked = false;
+      this.removeBookList = [];
+    }
+  }
+
+  removeSelectedBooks() {
+    const dialogRef = this.dialog.open(DialogResultExample);
+    dialogRef.afterClosed().subscribe(
+      result => {
+        console.log(result);
+        if (result === 'yes') {
+          for (let book of this.removeBookList) {
+            this.removeBookService.sendBook(book.id).subscribe(
+              res => {
+                this.getBookList();
+              },
+              error => {
+              }
+            );
+          }
+
+        }
+      }
+    );
+  }
+
   getBookList() {
     this.getBookListService.getBookList().subscribe(
       res => {
