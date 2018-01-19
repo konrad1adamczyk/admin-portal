@@ -7,7 +7,7 @@ import {LoginService} from '../../services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   private credential = {'username': '', 'password': ''};
   private loggedIn = false;
@@ -33,15 +33,5 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
-  ngOnInit() {
-    this.loginService.checkSession().subscribe(
-      data => {
-        this.loginService.publishLoggedIn(true);
-      },
-      error => {
-        this.loginService.publishLoggedIn(false);
-      }
-    );
-  }
+  
 }
