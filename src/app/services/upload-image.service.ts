@@ -17,6 +17,13 @@ export class UploadImageService {
     });
   }
 
+  modify(bookId: number) {
+    console.log(this.filesToUpload);
+    if (this.filesToUpload.length > 0) {
+      this.upload(bookId);
+    }
+  }
+
   fileChangeEvent(fileInput: any) {
     this.filesToUpload = <Array<File>> fileInput.target.files;
   }

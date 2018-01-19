@@ -16,6 +16,10 @@ export class ViewBookComponent implements OnInit {
   constructor(private getBookService: GetBookService, private route: ActivatedRoute, private router: Router) {
   }
 
+  onSelect(book: Book) {
+    this.router.navigate(['/editBook', this.book.id]);
+  }
+
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       this.bookId = Number.parseInt(params['id']);
@@ -23,7 +27,7 @@ export class ViewBookComponent implements OnInit {
 
     this.getBookService.getBook(this.bookId).subscribe(
       res => {
-        console.log(JSON.parse(res));
+        // console.log(JSON.parse(res));
         this.book = JSON.parse(res);
       },
       error => {
