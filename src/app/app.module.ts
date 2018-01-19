@@ -5,7 +5,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
 import {
-  MatButtonModule, MatListModule, MatSelectModule, MatSlideToggleModule,
+  MatButtonModule, MatDialogModule, MatListModule, MatSelectModule, MatSlideToggleModule,
   MatToolbarModule
 } from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -21,12 +21,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AddNewBookComponent} from './components/add-new-book/add-new-book.component';
 import {AddBookService} from './services/add-book.service';
 import {UploadImageService} from './services/upload-image.service';
-import {BookListComponent} from './components/book-list/book-list.component';
+import {BookListComponent, DialogResultExample} from './components/book-list/book-list.component';
 import {GetBookListService} from './services/get-book-list.service';
 import {ViewBookComponent} from './components/view-book/view-book.component';
 import {GetBookService} from './services/get-book.service';
-import { EditBookComponent } from './components/edit-book/edit-book.component';
+import {EditBookComponent} from './components/edit-book/edit-book.component';
 import {EditBookService} from './services/edit-book.service';
+import {RemoveBookService} from './services/remove-book.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {EditBookService} from './services/edit-book.service';
     AddNewBookComponent,
     BookListComponent,
     ViewBookComponent,
-    EditBookComponent
+    EditBookComponent,
+    DialogResultExample
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,7 @@ import {EditBookService} from './services/edit-book.service';
     ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule, MatToolbarModule, MatChipsModule, MatGridListModule, MatInputModule, MatFormFieldModule,
-    MatSelectModule, MatSlideToggleModule, MatListModule,
+    MatSelectModule, MatSlideToggleModule, MatListModule, MatDialogModule,
     BrowserAnimationsModule,
     routing
   ],
@@ -54,9 +56,11 @@ import {EditBookService} from './services/edit-book.service';
     UploadImageService,
     GetBookListService,
     GetBookService,
-    EditBookService
+    EditBookService,
+    RemoveBookService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogResultExample],
 })
 
 export class AppModule {

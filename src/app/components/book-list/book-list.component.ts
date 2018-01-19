@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Book} from '../../models/book';
 import {GetBookListService} from '../../services/get-book-list.service';
 import {Router} from '@angular/router';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {RemoveBookService} from '../../services/remove-book.service';
 
 @Component({
   selector: 'rb-book-list',
@@ -15,7 +17,10 @@ export class BookListComponent implements OnInit {
   private allChecked: boolean;
   private removeBookList: Book[] = new Array();
 
-  constructor(private getBookListService: GetBookListService, private router: Router) {
+  constructor(private getBookListService: GetBookListService,
+              private removeBookService: RemoveBookService,
+              private router: Router,
+              public dialog: MatDialog) {
   }
 
   onSelect(book: Book) {
@@ -23,7 +28,27 @@ export class BookListComponent implements OnInit {
     this.router.navigate(['/viewBook', this.selectedBook.id]);
   }
 
-  ngOnInit() {
+  openDialog(book: Book) {
+    const dialogRef = this.dialog.open(DialogResultExample);
+    dialogRef.afterClosed().subscribe(
+      result => {
+        console.log(result);
+        if (result === 'yes') {
+          this.removeBookService.sendBook(book.id).subscribe(
+            res => {
+              console.log(res);
+              this.getBookList();
+            },
+            error => {
+              console.log(error);
+            }
+          );
+        }
+      }
+    );
+  }
+
+  getBookList() {
     this.getBookListService.getBookList().subscribe(
       res => {
         // console.log(JSON.parse(res));
@@ -35,4 +60,19 @@ export class BookListComponent implements OnInit {
     );
   }
 
+  ngOnInit() {
+    this.getBookList();
+  }
+
+}
+
+@Component({
+  selector: 'rb-dialog-result-example-dialog',
+  templateUrl: './rb-dialog-result-example-dialog.html',
+
+})
+
+export class DialogResultExample {
+  constructor(public dialogRef: MatDialogRef<DialogResultExample>) {
+  }
 }
